@@ -1,510 +1,616 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Saif Shakil · Portfolio</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Saif Shakil · Digital IC / FPGA Engineer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1726;
+    --bg-2:#0e1e30;
+    --grid-line:rgba(184,207,230,0.055);
+    --panel:#11213570;
+    --panel-solid:#112135;
+    --panel-border:#24415f;
+    --ink:#dfe9f3;
+    --ink-dim:#89a3bd;
+    --ink-faint:#516c86;
+    --accent:#ff9142;
+    --accent-dim:#c96a2e;
+    --accent-soft:rgba(255,145,66,0.12);
+    --font-mono:'IBM Plex Mono',monospace;
+    --font-sans:'IBM Plex Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-sans);
+    line-height:1.6;
+    padding:1.75rem 1.25rem 3rem;
+    position:relative;
+    min-height:100vh;
+  }
+  body::before{
+    content:'';
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:38px 38px;
+    pointer-events:none;
+    z-index:0;
+  }
+  body::after{
+    content:'';
+    position:fixed;inset:0;
+    background:radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,145,66,0.06), transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent-soft);color:var(--ink);}
+  ::-webkit-scrollbar{width:8px;background:var(--bg-2);}
+  ::-webkit-scrollbar-thumb{background:var(--panel-border);border-radius:10px;}
 
-    body {
-      background: #0a0f17;
-      color: #c2e0e0;
-      font-family: 'Segoe UI', 'Courier New', monospace;
-      line-height: 1.6;
-      padding: 1.5rem;
-      min-height: 100vh;
-      position: relative;
-    }
+  .container{max-width:1180px;margin:0 auto;position:relative;z-index:1;}
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(rgba(0, 255, 200, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 200, 0.02) 1px, transparent 1px);
-      background-size: 30px 30px;
-      pointer-events: none;
-      z-index: 0;
-    }
+  /* ============ TITLE BLOCK ============ */
+  .titleblock{
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(17,33,53,0.6), rgba(14,26,42,0.4));
+    padding:1.1rem 1.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:0.75rem;
+  }
+  .doc-meta{
+    font-family:var(--font-mono);
+    font-size:0.65rem;
+    letter-spacing:0.06em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    margin-bottom:0.35rem;
+  }
+  .device-name{
+    font-family:var(--font-sans);
+    font-weight:700;
+    font-size:2.1rem;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .device-tag{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--accent);
+    letter-spacing:0.04em;
+    margin-top:0.15rem;
+  }
+  .titleblock-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:0.5rem;
+  }
+  .rev-tag{
+    font-family:var(--font-mono);
+    font-size:0.65rem;
+    color:var(--ink-faint);
+    letter-spacing:0.05em;
+    text-align:right;
+  }
+  .download-btn{
+    background:var(--accent-soft);
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:0.45rem 1.1rem;
+    border-radius:5px;
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:0.45rem;
+    transition:0.2s;
+  }
+  .download-btn:hover{background:var(--accent);color:#0b1726;}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
+  .contact-strip{
+    display:flex;flex-wrap:wrap;gap:1.1rem;
+    margin-top:0.9rem;padding-top:0.9rem;
+    border-top:1px dashed var(--panel-border);
+    font-family:var(--font-mono);font-size:0.72rem;
+  }
+  .contact-strip a{
+    color:var(--ink-dim);text-decoration:none;
+    display:inline-flex;align-items:center;gap:0.4rem;
+    transition:0.2s;
+  }
+  .contact-strip a:hover{color:var(--accent);}
+  .contact-strip i{color:var(--accent);font-size:0.75rem;}
 
-    .glitch {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #b8f0ee;
-      text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc;
-      animation: glitch 3s infinite;
-    }
-    @keyframes glitch {
-      0% { text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc; }
-      20% { text-shadow: -0.05em -0.025em 0 #00ffcc, 0.025em 0.05em 0 #0066ff, -0.05em 0 0 #ff00cc; }
-      40% { text-shadow: 0.025em 0.05em 0 #00ffcc, 0.05em 0 0 #0066ff, -0.05em -0.025em 0 #ff00cc; }
-      70% { text-shadow: -0.025em -0.05em 0 #00ffcc, -0.05em 0 0 #0066ff, 0.05em 0.025em 0 #ff00cc; }
-      100% { text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc; }
-    }
+  /* ============ CHIP PINOUT HERO ============ */
+  .chip-hero{max-width:780px;margin:2.6rem auto 1.4rem;padding:0 0.5rem;}
+  .pins-row{display:flex;justify-content:center;gap:2.4rem;flex-wrap:wrap;}
+  .pins-row.top{margin-bottom:0;}
+  .pins-row.bottom{margin-top:0;}
+  .pin{display:flex;flex-direction:column;align-items:center;gap:0.3rem;}
+  .pin-label{
+    font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.05em;
+    color:var(--ink-dim);white-space:nowrap;
+    border:1px solid var(--panel-border);border-radius:3px;
+    padding:0.15rem 0.45rem;background:rgba(255,255,255,0.015);
+  }
+  .lead{background:var(--accent-dim);}
+  .lead.vert{width:2px;height:16px;}
+  .lead.horiz{width:16px;height:2px;}
 
-    .subtitle {
-      color: #6bb8b0;
-      font-size: 0.95rem;
-      border-left: 3px solid #2ae0c0;
-      padding-left: 1rem;
-      margin-top: 0.2rem;
-      letter-spacing: 0.5px;
-    }
+  .chip-mid{display:flex;align-items:center;justify-content:center;gap:0;}
+  .pins-col{display:flex;flex-direction:column;justify-content:space-evenly;gap:1.1rem;min-width:120px;}
+  .pins-col.left{align-items:flex-end;}
+  .pins-col.right{align-items:flex-start;}
+  .pins-col .pin{flex-direction:row;}
 
-    .card {
-      background: rgba(10, 20, 28, 0.8);
-      backdrop-filter: blur(4px);
-      border: 1px solid #1f3f44;
-      border-radius: 20px;
-      padding: 1.5rem 1.8rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-      transition: 0.25s;
-    }
-    .card:hover {
-      border-color: #2dd5c0;
-      box-shadow: 0 0 25px rgba(0, 255, 200, 0.08);
-    }
+  .chip-package{
+    background:linear-gradient(180deg,#16304e,#0e1d31);
+    border:2px solid var(--accent);
+    border-radius:8px;
+    padding:1.9rem 2.6rem;
+    text-align:center;
+    position:relative;
+    min-width:230px;
+    box-shadow:0 0 40px rgba(255,145,66,0.09), inset 0 0 24px rgba(0,0,0,0.35);
+  }
+  .chip-package::before{
+    content:'';position:absolute;top:10px;left:10px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 10px var(--accent);
+  }
+  .chip-partno{font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.08em;}
+  .chip-devname{font-family:var(--font-sans);font-weight:700;font-size:1.15rem;color:var(--ink);margin-top:0.35rem;}
+  .chip-desc{font-family:var(--font-mono);font-size:0.62rem;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.35rem;}
 
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #8ee4d0;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #1a4a4a;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .section-title i {
-      color: #2ae0c0;
-      font-size: 1.1rem;
-    }
+  @media (max-width:680px){
+    .chip-mid{flex-direction:column;gap:1rem;}
+    .pins-col{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:0.6rem 1rem;order:3;}
+    .pins-col.left{order:2;}
+    .pins-col.right{order:4;}
+    .chip-package{order:1;}
+    .lead.horiz{display:none;}
+    .pins-row{gap:0.8rem 1.2rem;}
+  }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
+  /* ============ SIGNAL DIVIDER ============ */
+  .signal-divider{display:block;width:100%;height:20px;margin:2.1rem 0;opacity:0.55;}
+  .signal-divider path{fill:none;stroke:var(--accent-dim);stroke-width:1.5;}
 
-    .chip {
-      background: #142b30;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      color: #b0f0ea;
-      display: inline-block;
-      border: 1px solid #1e5a5a;
-      letter-spacing: 0.5px;
-    }
+  /* ============ SECTIONS ============ */
+  section{margin-bottom:0.5rem;}
+  .sec-head{
+    display:flex;align-items:baseline;gap:0.7rem;
+    margin-bottom:1rem;
+  }
+  .sec-num{
+    font-family:var(--font-mono);color:var(--accent);
+    font-size:0.85rem;font-weight:700;letter-spacing:0.05em;
+  }
+  .sec-title{
+    font-family:var(--font-sans);font-weight:700;font-size:1.05rem;
+    letter-spacing:0.03em;color:var(--ink);text-transform:uppercase;
+  }
+  .sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--panel-border),transparent);}
 
-    .skill-tag {
-      background: #0b1f24;
-      border: 1px solid #1a4a4a;
-      border-radius: 30px;
-      padding: 0.2rem 1.1rem;
-      font-size: 0.75rem;
-      color: #b8e6e0;
-      display: inline-block;
-      margin: 0.2rem 0.1rem;
-      transition: 0.15s;
-    }
-    .skill-tag:hover {
-      background: #194a4a;
-      border-color: #2ae0c0;
-      color: white;
-    }
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    padding:1.3rem 1.6rem;
+  }
 
-    /* unified project card - both hardware & software */
-    .project-card {
-      background: #0d1a20;
-      border-left: 4px solid #2ae0c0;
-      padding: 0.8rem 1.2rem;
-      margin-bottom: 1rem;
-      border-radius: 12px;
-      transition: 0.2s;
-      cursor: pointer;
-    }
-    .project-card:hover {
-      background: #12262e;
-      border-left-color: #80f0e0;
-    }
-    .project-card .title {
-      font-weight: 700;
-      color: #c8f2ee;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .project-card .title i {
-      color: #2ae0c0;
-      font-size: 0.8rem;
-      transition: 0.2s;
-    }
-    .project-card .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 0.8rem;
-      font-size: 0.7rem;
-      color: #7ab0aa;
-      margin: 0.2rem 0 0.3rem;
-    }
-    .project-card .desc {
-      font-size: 0.85rem;
-      color: #b0d8d4;
-      margin-top: 0.3rem;
-      display: none;
-      padding-top: 0.3rem;
-      border-top: 1px dashed #1a4a4a;
-    }
-    .project-card .desc.show {
-      display: block;
-    }
-    .project-card .desc a {
-      color: #5fc8c0;
-      text-decoration: none;
-      border-bottom: 1px dotted #2a6a6a;
-    }
-    .project-card .desc a:hover {
-      color: #8ff0e0;
-      border-bottom-color: #8ff0e0;
-    }
-    .project-card .tech-tags {
-      margin-top: 0.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.2rem 0.4rem;
-    }
-    .project-card .tech-tags span {
-      background: #0f2830;
-      padding: 0.05rem 0.7rem;
-      border-radius: 30px;
-      font-size: 0.65rem;
-      color: #90d0c8;
-      border: 1px solid #1a5555;
-    }
+  .desc-text{font-size:0.92rem;color:var(--ink-dim);max-width:800px;}
+  .desc-text strong{color:var(--ink);}
 
-    .exp-item {
-      margin-bottom: 1.2rem;
-    }
-    .exp-item .title {
-      font-weight: 700;
-      color: #c8f2ee;
-    }
-    .exp-item .company {
-      color: #72bfb0;
-      font-size: 0.9rem;
-    }
-    .exp-item .date {
-      color: #5f958a;
-      font-size: 0.7rem;
-      float: right;
-    }
+  /* ============ SPEC TABLE (skills) ============ */
+  .spec-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.78rem;}
+  .spec-table th{
+    text-align:left;color:var(--accent);font-weight:600;
+    padding:0.5rem 0.8rem;border-bottom:1px solid var(--panel-border);
+    letter-spacing:0.05em;font-size:0.68rem;text-transform:uppercase;
+  }
+  .spec-table td{
+    padding:0.65rem 0.8rem;color:var(--ink-dim);
+    border-bottom:1px solid rgba(36,65,95,0.4);
+    vertical-align:top;
+  }
+  .spec-table tr:hover td{background:rgba(255,145,66,0.03);}
+  .spec-table td.domain{color:var(--ink);font-weight:600;white-space:nowrap;}
+  .spec-tag{
+    display:inline-block;background:rgba(255,255,255,0.02);
+    border:1px solid var(--panel-border);border-radius:3px;
+    padding:0.08rem 0.45rem;margin:0.1rem 0.2rem 0.1rem 0;
+    font-size:0.7rem;color:var(--ink-dim);
+  }
 
-    .contact-links a {
-      color: #b0e0e6;
-      text-decoration: none;
-      margin-right: 1.2rem;
-      font-size: 0.9rem;
-      border-bottom: 1px dotted #1f5a5a;
-      transition: 0.2s;
-    }
-    .contact-links a:hover {
-      color: #2ae0c0;
-      border-bottom-color: #2ae0c0;
-    }
+  /* ============ EXPERIENCE ============ */
+  .exp-item{padding:0.9rem 0;border-bottom:1px dashed var(--panel-border);}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.4rem;align-items:baseline;}
+  .exp-title{font-weight:700;color:var(--ink);font-size:0.95rem;}
+  .exp-date{font-family:var(--font-mono);font-size:0.68rem;color:var(--accent);letter-spacing:0.04em;}
+  .exp-company{font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-faint);margin-top:0.1rem;}
+  .exp-item ul{list-style:none;margin-top:0.5rem;font-size:0.82rem;color:var(--ink-dim);}
+  .exp-item ul li{margin-bottom:0.25rem;padding-left:1.1rem;position:relative;}
+  .exp-item ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);}
 
-    .download-btn {
-      background: #0d2a2a;
-      border: 1px solid #2ae0c0;
-      color: #b8f0ee;
-      padding: 0.4rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      transition: 0.25s;
-    }
-    .download-btn i {
-      margin-right: 0.4rem;
-      color: #2ae0c0;
-    }
-    .download-btn:hover {
-      background: #1a4a4a;
-      color: white;
-      box-shadow: 0 0 15px rgba(0, 255, 200, 0.2);
-    }
+  /* ============ IP CORE / PROJECT CARDS ============ */
+  .ip-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+  .ip-card{
+    background:var(--panel-solid);
+    border:1px solid var(--panel-border);
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+    padding:0.85rem 1.1rem;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  .ip-card:hover{border-left-color:var(--ink);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
+  .ip-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .ip-card.sw-variant{border-left-color:var(--ink-faint);}
+  .ip-card.sw-variant .ip-id{color:var(--ink-faint);}
+  .ip-card.sw-variant:hover{border-left-color:var(--accent-dim);}
+  .ip-top{display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;}
+  .ip-id{font-family:var(--font-mono);font-size:0.62rem;color:var(--accent-dim);letter-spacing:0.06em;}
+  .ip-name{font-weight:700;color:var(--ink);font-size:0.92rem;display:flex;align-items:center;gap:0.5rem;flex:1;}
+  .ip-name i{color:var(--accent);font-size:0.7rem;transition:0.2s;margin-left:auto;}
+  .ip-meta{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-faint);margin-top:0.3rem;letter-spacing:0.02em;}
+  .ip-desc{
+    font-size:0.8rem;color:var(--ink-dim);margin-top:0.6rem;
+    padding-top:0.6rem;border-top:1px dashed var(--panel-border);
+    display:none;
+  }
+  .ip-desc.show{display:block;}
+  .ip-desc a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-dim);}
+  .ip-desc a:hover{color:var(--ink);}
+  .ip-tags{margin-top:0.55rem;display:flex;flex-wrap:wrap;gap:0.25rem;}
+  .ip-tags span{
+    background:rgba(255,255,255,0.02);border:1px solid var(--panel-border);
+    border-radius:3px;padding:0.06rem 0.5rem;font-size:0.62rem;
+    font-family:var(--font-mono);color:var(--ink-dim);
+  }
 
-    .footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.7rem;
-      color: #3d7a7a;
-      border-top: 1px solid #1a3a3a;
-      padding-top: 1.2rem;
-    }
+  .hint{font-size:0.68rem;color:var(--ink-faint);font-family:var(--font-mono);margin-bottom:0.8rem;}
+  .hint i{color:var(--accent);margin-right:0.3rem;}
 
-    @media (max-width: 750px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .glitch { font-size: 1.7rem; }
-      .card { padding: 1.2rem; }
-      .contact-links a { display: inline-block; margin-bottom: 0.2rem; }
-    }
-    @media (max-width: 480px) {
-      body { padding: 0.8rem; }
-      .glitch { font-size: 1.3rem; }
-    }
+  /* ============ EDUCATION / CERTS ============ */
+  .edu-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1.4rem;}
+  .edu-degree{font-weight:700;color:var(--ink);font-size:0.95rem;}
+  .edu-school{font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-dim);margin-top:0.15rem;}
+  .edu-date{font-family:var(--font-mono);font-size:0.68rem;color:var(--accent);float:right;}
+  .cert-list{list-style:none;font-size:0.8rem;color:var(--ink-dim);}
+  .cert-list li{padding:0.3rem 0;border-bottom:1px dashed var(--panel-border);display:flex;align-items:center;gap:0.5rem;}
+  .cert-list li:last-child{border-bottom:none;}
+  .cert-list i{color:var(--accent);font-size:0.75rem;}
 
-    ::-webkit-scrollbar { width: 6px; background: #0b141a; }
-    ::-webkit-scrollbar-thumb { background: #1f5a5a; border-radius: 10px; }
-  </style>
+  /* ============ ORDERING INFO / FOOTER ============ */
+  .order-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.78rem;}
+  .order-table td{padding:0.55rem 0.8rem;border-bottom:1px solid rgba(36,65,95,0.4);}
+  .order-table td:first-child{color:var(--accent);width:140px;letter-spacing:0.04em;}
+  .order-table td:last-child{color:var(--ink-dim);}
+  .order-table a{color:var(--ink-dim);text-decoration:none;}
+  .order-table a:hover{color:var(--accent);}
+  .order-table tr:last-child td{border-bottom:none;}
+
+  .footer{
+    text-align:center;margin-top:2.2rem;padding-top:1.2rem;
+    border-top:1px solid var(--panel-border);
+    font-family:var(--font-mono);font-size:0.65rem;color:var(--ink-faint);
+    letter-spacing:0.04em;
+  }
+
+  @media (max-width:820px){
+    .ip-grid{grid-template-columns:1fr;}
+    .edu-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .device-name{font-size:1.5rem;}
+    .titleblock{padding:0.9rem 1rem;}
+    .panel{padding:1rem 1.1rem;}
+    .spec-table{font-size:0.7rem;}
+    .spec-table th,.spec-table td{padding:0.5rem 0.4rem;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
 <div class="container">
 
-  <!-- header with download CV (Karachi removed from header, now in education) -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+  <!-- TITLE BLOCK -->
+  <div class="titleblock">
     <div>
-      <h1 class="glitch">Muhammad Saif Shakil</h1>
-      <div class="subtitle">
-        <i class="fas fa-microchip" style="color:#2ae0c0; margin-right: 6px;"></i>
-        Digital IC · FPGA · Verilog · Full‑stack
-      </div>
+      <div class="doc-meta">Datasheet · Engineering Profile</div>
+      <div class="device-name">Muhammad Saif Shakil</div>
+      <div class="device-tag">Digital IC Design &amp; Verification · FPGA · RTL Development</div>
     </div>
-    <div style="display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 0.5rem;">
-      <a href="resume.pdf" download class="download-btn"><i class="fas fa-file-pdf"></i> Download CV</a>
+    <div class="titleblock-right">
+      <div class="rev-tag">Doc No. MSS‑2026 &nbsp;|&nbsp; Rev 1.3 &nbsp;|&nbsp; Karachi, PK</div>
+      <a href="resume.pdf" download class="download-btn"><i class="fas fa-file-arrow-down"></i> Download CV</a>
     </div>
-  </div>
-
-  <!-- contact & summary -->
-  <div class="card">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem;">
-      <div class="contact-links">
-        <a href="mailto:saifshakil10@gmail.com"><i class="fas fa-envelope"></i> saifshakil10</a>
-        <a href="#"><i class="fab fa-linkedin"></i> /muhammad-saif-shakil</a>
-        <a href="#"><i class="fab fa-github"></i> Muhammadsaiff</a>
-        <a href="#"><i class="fas fa-phone-alt"></i> +92-304-2745538</a>
-      </div>
-      <div>
-        <span class="chip"><i class="fas fa-graduation-cap"></i> Karachi, Pakistan</span>
-      </div>
-    </div>
-    <div style="margin-top: 1rem; font-size: 0.9rem; color: #b0d8d4; border-top: 1px solid #1a3a3a; padding-top: 0.8rem;">
-      <i class="fas fa-quote-left" style="color: #2ae0c0; opacity: 0.7;"></i>
-      Computer Science graduate with <strong>hardware design</strong> focus: RTL, Verilog, SystemVerilog, FPGA, AMBA protocols. 
-      Also experienced in AI, mobile & full‑stack. Passionate about silicon‑level design and verification.
+    <div class="contact-strip" style="width:100%;">
+      <a href="mailto:saifshakil10@gmail.com"><i class="fas fa-envelope"></i>saifshakil10@gmail.com</a>
+      <a href="https://www.linkedin.com/in/muhammad-saif-shakil" target="_blank"><i class="fab fa-linkedin"></i>/muhammad-saif-shakil</a>
+      <a href="https://github.com/Muhammadsaiff" target="_blank"><i class="fab fa-github"></i>Muhammadsaiff</a>
+      <a href="tel:+923042745538"><i class="fas fa-phone"></i>+92‑304‑2745538</a>
     </div>
   </div>
 
-  <!-- two columns -->
-  <div class="grid-2">
-    <!-- left column: experience, education, certs -->
-    <div>
-      <div class="card">
-        <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
-        <div class="exp-item">
-          <div class="title">Digital IC Design & Verification Trainee</div>
-          <div class="company">INSPIRE - PSEB <span class="date">Ongoing</span></div>
-          <ul style="list-style: none; font-size: 0.8rem; color: #b0d0cc; margin-top: 0.3rem;">
-            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>RTL Design, Verilog, SystemVerilog, FPGA flow</li>
-            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>Functional verification, testbench, EDA tools</li>
-            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>NED University · PSEB · Tech Destination Pakistan</li>
-          </ul>
-        </div>
-        <div class="exp-item">
-          <div class="title">Python Development Intern</div>
-          <div class="company">XPACE Technologies Pvt. Ltd. <span class="date">May–Jul 2024</span></div>
-          <ul style="list-style: none; font-size: 0.8rem; color: #b0d0cc; margin-top: 0.3rem;">
-            <li><i class="fas fa-code" style="color:#2ae0c0; width:1.2rem;"></i>Inventory & LMS · dashboard analytics</li>
-            <li><i class="fas fa-users" style="color:#2ae0c0; width:1.2rem;"></i>Problem-solving · modular coding</li>
-          </ul>
-        </div>
+  <!-- CHIP PINOUT HERO -->
+  <div class="chip-hero">
+    <div class="pins-row top">
+      <div class="pin"><span class="pin-label">VERILOG</span><span class="lead vert"></span></div>
+      <div class="pin"><span class="pin-label">SYSTEMVERILOG</span><span class="lead vert"></span></div>
+      <div class="pin"><span class="pin-label">RTL DESIGN</span><span class="lead vert"></span></div>
+      <div class="pin"><span class="pin-label">FPGA</span><span class="lead vert"></span></div>
+    </div>
+    <div class="chip-mid">
+      <div class="pins-col left">
+        <div class="pin"><span class="pin-label">PYTHON</span><span class="lead horiz"></span></div>
+        <div class="pin"><span class="pin-label">FLUTTER</span><span class="lead horiz"></span></div>
+        <div class="pin"><span class="pin-label">FASTAPI</span><span class="lead horiz"></span></div>
       </div>
-
-      <div class="card">
-        <div class="section-title"><i class="fas fa-university"></i> Education</div>
-        <div style="font-weight: 700; color: #c0f2f0;">BS Computer Science</div>
-        <div style="color: #7bb8b0; font-size: 0.85rem;">UIT University, Karachi, Pakistan <span style="float:right;">2022–2026</span></div>
+      <div class="chip-package">
+        <div class="chip-devname">MUHAMMAD SAIF SHAKIL</div>
+        <div class="chip-desc">Silicon‑Level Design Engineer</div>
       </div>
-
-      <div class="card">
-        <div class="section-title"><i class="fas fa-certificate"></i> Certificates</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; font-size: 0.8rem;">
-          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> PCAP · Python</span>
-          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> Cisco Cybersecurity</span>
-          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> Harvard CS50x 2023</span>
-          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> AWS Analytics (2x)</span>
-        </div>
+      <div class="pins-col right">
+        <div class="pin"><span class="lead horiz"></span><span class="pin-label">FIRMWARE</span></div>
+        <div class="pin"><span class="lead horiz"></span><span class="pin-label">IOT</span></div>
+        <div class="pin"><span class="lead horiz"></span><span class="pin-label">POSTGRESQL</span></div>
       </div>
     </div>
-
-    <!-- right column: ALL PROJECTS (unified theme, hardware + software) -->
-    <div>
-      <div class="card">
-        <div class="section-title"><i class="fas fa-microchip"></i> Hardware · FPGA Projects</div>
-        <p style="font-size: 0.75rem; color: #7ab0aa; margin-bottom: 0.8rem;"><i class="fas fa-info-circle"></i> Click on any project for details</p>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">UART <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-code"></i> Verilog · FPGA · async serial</div>
-          <div class="desc">Designed and implemented a UART communication module in Verilog for FPGA‑based asynchronous serial communication. Includes TX/RX modules, baud rate generation, start/stop bit detection, and serial/parallel conversion. Verified with testbenches and validated on FPGA board. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/uart" target="_blank">github.com/Muhammadsaiff/uart</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>testbench</span><span>FPGA</span><span>UART</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">AMBA APB Master‑Slave <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-bus"></i> Verilog · APB protocol · FSM</div>
-          <div class="desc">Designed APB Master and Slave modules in Verilog, supporting compliant read/write transactions with APB protocol signals. Developed FSM‑based control, verified with testbenches, and validated through simulation and FPGA implementation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/amba_apb" target="_blank">github.com/Muhammadsaiff/amba_apb</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>APB</span><span>FSM</span><span>FPGA</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">AXI4‑Lite Interface <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-arrows-alt-h"></i> Verilog · AXI4‑Lite · handshake</div>
-          <div class="desc">Designed AXI4‑Lite Master‑Slave interface with five channels and VALID/READY handshake. FSM‑based control logic, verified with testbenches, validated on FPGA. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/axi-lite" target="_blank">github.com/Muhammadsaiff/axi-lite</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>AXI4‑Lite</span><span>FPGA</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">AMBA AHB‑Lite <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-link"></i> Verilog · AHB‑Lite · FSM</div>
-          <div class="desc">Designed AMBA AHB‑Lite Master and Slave interface with protocol‑compliant read/write transactions. FSM control, testbench verification, FPGA validation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/ahb" target="_blank">github.com/Muhammadsaiff/ahb</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>AHB‑Lite</span><span>FPGA</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">VGA Controller + SRAM <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-tv"></i> Verilog · VGA timing · SRAM buffer</div>
-          <div class="desc">VGA controller with SRAM‑based frame buffer for real‑time video output. Implements VGA timing, synchronization, pixel addressing, and display control. Verified with testbenches and FPGA. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/vga_controller" target="_blank">github.com/Muhammadsaiff/vga_controller</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>VGA</span><span>SRAM</span><span>FPGA</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Cache Controller <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-database"></i> Verilog · direct‑mapped · SRAM</div>
-          <div class="desc">Direct‑mapped cache controller with SRAM‑based cache and main memory. Implements read/write, hit/miss detection, tag comparison, FSM control. Verified with testbenches. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/cache_controller" target="_blank">github.com/Muhammadsaiff/cache_controller</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>cache</span><span>SRAM</span><span>FSM</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">32‑bit ALU <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-calculator"></i> Verilog · arithmetic · logic</div>
-          <div class="desc">32‑bit ALU supporting arithmetic, logical, comparison, shift operations. Combinational RTL, testbench verification, FPGA implementation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/32bit_alu" target="_blank">github.com/Muhammadsaiff/32bit_alu</a></div>
-          <div class="tech-tags"><span>Verilog</span><span>ALU</span><span>FPGA</span></div>
-        </div>
-      </div>
-
-      <!-- SOFTWARE PROJECTS (same unified card style) -->
-      <div class="card">
-        <div class="section-title"><i class="fas fa-code"></i> Software · Full‑stack</div>
-        <p style="font-size: 0.75rem; color: #7ab0aa; margin-bottom: 0.8rem;"><i class="fas fa-info-circle"></i> Click for details</p>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Pricexpert <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-mobile-alt"></i> Flutter · FastAPI · PostgreSQL · Firebase</div>
-          <div class="desc">AI‑powered grocery price comparison platform. Full‑stack mobile app with AI‑based product matching, price comparison, budget analysis. Built REST APIs and responsive UI. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/pricexpert" target="_blank">github.com/Muhammadsaiff/pricexpert</a></div>
-          <div class="tech-tags"><span>Flutter</span><span>FastAPI</span><span>PostgreSQL</span><span>Firebase</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Twintex Industry <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-industry"></i> Flutter · Firebase Firestore</div>
-          <div class="desc">Client‑wise towel processing & inventory management system. Implemented sales ledger, transaction management, and optimized performance for large datasets. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/twintex" target="_blank">github.com/Muhammadsaiff/twintex</a></div>
-          <div class="tech-tags"><span>Flutter</span><span>Firestore</span><span>inventory</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Aab‑e‑Pak <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-tint"></i> Flutter · Firebase</div>
-          <div class="desc">All‑in‑one water services app: booking water tankers, bottled water, tank cleaning, boring. Includes emergency mode, scheduling, vendor/brand selection. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Aab-e-pak" target="_blank">github.com/Muhammadsaiff/Aab-e-pak</a></div>
-          <div class="tech-tags"><span>Flutter</span><span>Firebase</span><span>mobile</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Smart City Management <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-city"></i> Flask · Oracle (cx_Oracle)</div>
-          <div class="desc">Web app with full CRUD operations and secure transaction management using cx_Oracle. Built for city infrastructure data handling. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/smartcity_management_system" target="_blank">github.com/Muhammadsaiff/smartcity_management_system</a></div>
-          <div class="tech-tags"><span>Flask</span><span>Oracle</span><span>SQL</span></div>
-        </div>
-
-        <div class="project-card" onclick="toggleDesc(this)">
-          <div class="title">Automated Water Gardener <i class="fas fa-chevron-down"></i></div>
-          <div class="meta"><i class="fas fa-leaf"></i> Arduino · IoT</div>
-          <div class="desc">Arduino‑based plant watering system with moisture sensing and level control. Reduces labor and uses water efficiently. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Automated_water_gardener" target="_blank">github.com/Muhammadsaiff/Automated_water_gardener</a></div>
-          <div class="tech-tags"><span>Arduino</span><span>IoT</span><span>C++</span></div>
-        </div>
-      </div>
+    <div class="pins-row bottom">
+      <div class="pin"><span class="lead vert"></span><span class="pin-label">AXI4‑LITE</span></div>
+      <div class="pin"><span class="lead vert"></span><span class="pin-label">AHB‑LITE</span></div>
+      <div class="pin"><span class="lead vert"></span><span class="pin-label">APB</span></div>
+      <div class="pin"><span class="lead vert"></span><span class="pin-label">UART</span></div>
     </div>
   </div>
 
-  <!-- skills full width -->
-  <div class="card">
-    <div class="section-title"><i class="fas fa-tools"></i> Core Skills</div>
-    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 1rem;">
-      <span class="skill-tag"><i class="fas fa-microchip"></i> Verilog</span>
-      <span class="skill-tag">SystemVerilog</span>
-      <span class="skill-tag">FPGA</span>
-      <span class="skill-tag">RTL Design</span>
-      <span class="skill-tag">FSM · CDC</span>
-      <span class="skill-tag">AMBA AXI4/APB/AHB</span>
-      <span class="skill-tag">UART</span>
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">C++</span>
-      <span class="skill-tag">Java</span>
-      <span class="skill-tag">Flutter</span>
-      <span class="skill-tag">FastAPI · Flask</span>
-      <span class="skill-tag">PostgreSQL</span>
-      <span class="skill-tag">Oracle DB</span>
-      <span class="skill-tag">Firebase</span>
-      <span class="skill-tag">OpenCV</span>
-      <span class="skill-tag">NLP</span>
-      <span class="skill-tag">Docker · Git</span>
+  <!-- 01 GENERAL DESCRIPTION -->
+  <section id="sec01">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">General Description</span><span class="sec-line"></span></div>
+    <div class="panel">
+      <p class="desc-text">
+        Computer Science graduate (BS, UIT University, Karachi) with a primary focus on <strong>digital IC design and verification</strong>:
+        RTL development in Verilog and SystemVerilog, AMBA bus protocols (AXI4‑Lite, AHB‑Lite, APB), FPGA implementation, and
+        functional verification with testbenches. Currently training under the INSPIRE (PSEB) digital IC design & verification
+        program run with NED University. Also builds full‑stack and embedded software — Python, Flutter, FastAPI — as a secondary
+        skill set that supports firmware‑adjacent and tooling work around hardware projects.
+      </p>
     </div>
-    <div style="margin-top: 0.6rem; font-size: 0.8rem; color: #6ba8a0;">
-      <i class="fas fa-bolt" style="color:#2ae0c0;"></i> Hardware design · Verification · Full‑stack · AI
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 02 ELECTRICAL CHARACTERISTICS (skills) -->
+  <section id="sec02">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Core Competencies</span><span class="sec-line"></span></div>
+    <div class="panel">
+      <table class="spec-table">
+        <thead><tr><th>Domain</th><th>Tools / Languages</th></tr></thead>
+        <tbody>
+          <tr><td class="domain">RTL &amp; Verification</td><td><span class="spec-tag">Verilog</span><span class="spec-tag">SystemVerilog</span><span class="spec-tag">Testbenches</span><span class="spec-tag">Functional Verification</span></td></tr>
+          <tr><td class="domain">Bus Protocols</td><td><span class="spec-tag">AMBA AXI4‑Lite</span><span class="spec-tag">AMBA AHB‑Lite</span><span class="spec-tag">APB</span><span class="spec-tag">UART</span></td></tr>
+          <tr><td class="domain">FPGA &amp; EDA</td><td><span class="spec-tag">FPGA Flow</span><span class="spec-tag">Synthesis</span><span class="spec-tag">Simulation</span><span class="spec-tag">FSM Design</span></td></tr>
+          <tr><td class="domain">Software &amp; Tooling</td><td><span class="spec-tag">Python</span><span class="spec-tag">Flutter</span><span class="spec-tag">FastAPI</span><span class="spec-tag">PostgreSQL</span><span class="spec-tag">Firebase</span><span class="spec-tag">Docker</span><span class="spec-tag">OpenCV</span></td></tr>
+        </tbody>
+      </table>
     </div>
-  </div>
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 03 EXPERIENCE -->
+  <section id="sec03">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Experience</span><span class="sec-line"></span></div>
+    <div class="panel">
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-title">Digital IC Design &amp; Verification Trainee</span><span class="exp-date">Ongoing</span></div>
+        <div class="exp-company">INSPIRE — PSEB, in collaboration with NED University &amp; Tech Destination Pakistan</div>
+        <ul>
+          <li>RTL design in Verilog / SystemVerilog, covering the full FPGA implementation flow</li>
+          <li>Functional verification: testbench development and simulation with industry EDA tools</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-title">Python Development Intern</span><span class="exp-date">May – Jul 2024</span></div>
+        <div class="exp-company">XPACE Technologies Pvt. Ltd.</div>
+        <ul>
+          <li>Built inventory and LMS dashboard features with analytics views</li>
+          <li>Modular, maintainable code with a focus on debugging and problem‑solving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 04 HARDWARE IP CORES -->
+  <section id="sec04">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Hardware IP Cores — Verilog / FPGA</span><span class="sec-line"></span></div>
+    <p class="hint"><i class="fas fa-circle-info"></i>Click any core to expand its description and source link.</p>
+    <div class="ip-grid">
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑01</span><span class="ip-name">UART Controller <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · FPGA · Asynchronous Serial</div>
+        <div class="ip-desc">Designed and implemented a UART communication module in Verilog for FPGA‑based asynchronous serial communication. Includes TX/RX modules, baud rate generation, start/stop bit detection, and serial/parallel conversion. Verified with testbenches and validated on an FPGA board.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/uart" target="_blank">github.com/Muhammadsaiff/uart</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>Testbench</span><span>FPGA</span><span>UART</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑02</span><span class="ip-name">AMBA APB Master‑Slave <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · APB Protocol · FSM</div>
+        <div class="ip-desc">Designed APB Master and Slave modules in Verilog, supporting protocol‑compliant read/write transactions. Developed FSM‑based control logic, verified with testbenches, and validated through simulation and FPGA implementation.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/amba_apb" target="_blank">github.com/Muhammadsaiff/amba_apb</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>APB</span><span>FSM</span><span>FPGA</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑03</span><span class="ip-name">AXI4‑Lite Interface <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · AXI4‑Lite · VALID/READY Handshake</div>
+        <div class="ip-desc">Designed an AXI4‑Lite Master‑Slave interface with all five channels and VALID/READY handshaking. FSM‑based control logic, verified with testbenches and validated on FPGA.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/axi-lite" target="_blank">github.com/Muhammadsaiff/axi-lite</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>AXI4‑Lite</span><span>FPGA</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑04</span><span class="ip-name">AMBA AHB‑Lite <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · AHB‑Lite · FSM</div>
+        <div class="ip-desc">Designed an AMBA AHB‑Lite Master and Slave interface with protocol‑compliant read/write transactions, FSM control, testbench verification, and FPGA validation.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/ahb" target="_blank">github.com/Muhammadsaiff/ahb</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>AHB‑Lite</span><span>FPGA</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑05</span><span class="ip-name">VGA Controller + SRAM <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · VGA Timing · SRAM Frame Buffer</div>
+        <div class="ip-desc">VGA controller with an SRAM‑based frame buffer for real‑time video output. Implements VGA timing, synchronization, pixel addressing, and display control. Verified with testbenches and on FPGA.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/vga_controller" target="_blank">github.com/Muhammadsaiff/vga_controller</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>VGA</span><span>SRAM</span><span>FPGA</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑06</span><span class="ip-name">Cache Controller <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · Direct‑Mapped · SRAM</div>
+        <div class="ip-desc">Direct‑mapped cache controller with SRAM‑based cache and main memory. Implements read/write, hit/miss detection, tag comparison, and FSM control, verified with testbenches.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/cache_controller" target="_blank">github.com/Muhammadsaiff/cache_controller</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>Cache</span><span>SRAM</span><span>FSM</span></div>
+      </div>
+
+      <div class="ip-card" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">IP‑07</span><span class="ip-name">32‑bit ALU <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Verilog · Arithmetic · Logic · Shift</div>
+        <div class="ip-desc">32‑bit ALU supporting arithmetic, logical, comparison, and shift operations. Combinational RTL, testbench verification, and FPGA implementation.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/32bit_alu" target="_blank">github.com/Muhammadsaiff/32bit_alu</a></div>
+        <div class="ip-tags"><span>Verilog</span><span>ALU</span><span>FPGA</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 05 SOFTWARE MODULES -->
+  <section id="sec05">
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-title">Software Modules — Full‑Stack &amp; Mobile</span><span class="sec-line"></span></div>
+    <p class="hint"><i class="fas fa-circle-info"></i>Secondary skill set. Click any module to expand its description and source link.</p>
+    <div class="ip-grid">
+
+      <div class="ip-card sw-variant" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">SW‑01</span><span class="ip-name">Pricexpert <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Flutter · FastAPI · PostgreSQL</div>
+        <div class="ip-desc">AI‑powered grocery price comparison platform. Full‑stack mobile app with AI‑based product matching, price comparison, and budget analysis, built on REST APIs.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/pricexpert" target="_blank">github.com/Muhammadsaiff/pricexpert</a></div>
+        <div class="ip-tags"><span>Flutter</span><span>FastAPI</span><span>PostgreSQL</span></div>
+      </div>
+
+      <div class="ip-card sw-variant" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">SW‑02</span><span class="ip-name">Twintex Industry <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Flutter · Firestore</div>
+        <div class="ip-desc">Client‑wise towel processing and inventory management system with a sales ledger and transaction management, optimized for large datasets.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/twintex" target="_blank">github.com/Muhammadsaiff/twintex</a></div>
+        <div class="ip-tags"><span>Flutter</span><span>Firestore</span><span>Inventory</span></div>
+      </div>
+
+      <div class="ip-card sw-variant" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">SW‑03</span><span class="ip-name">Aab‑e‑Pak <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Flutter · Firebase</div>
+        <div class="ip-desc">All‑in‑one water services app for booking tankers, bottled water, tank cleaning, and boring, with an emergency mode and vendor selection.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Aab-e-pak" target="_blank">github.com/Muhammadsaiff/Aab-e-pak</a></div>
+        <div class="ip-tags"><span>Flutter</span><span>Firebase</span><span>Mobile</span></div>
+      </div>
+
+      <div class="ip-card sw-variant" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">SW‑04</span><span class="ip-name">Smart City <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Flask · Oracle</div>
+        <div class="ip-desc">Web app with full CRUD operations and secure transaction management using cx_Oracle, built for city infrastructure data handling.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/smartcity_management_system" target="_blank">github.com/Muhammadsaiff/smartcity_management_system</a></div>
+        <div class="ip-tags"><span>Flask</span><span>Oracle</span><span>SQL</span></div>
+      </div>
+
+      <div class="ip-card sw-variant" tabindex="0" onclick="toggleDesc(this)">
+        <div class="ip-top"><span class="ip-id">SW‑05</span><span class="ip-name">Water Gardener <i class="fas fa-chevron-down"></i></span></div>
+        <div class="ip-meta">Arduino · IoT</div>
+        <div class="ip-desc">Arduino‑based automated plant watering system with moisture sensing and level control, reducing labor and improving water efficiency.<br><i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Automated_water_gardener" target="_blank">github.com/Muhammadsaiff/Automated_water_gardener</a></div>
+        <div class="ip-tags"><span>Arduino</span><span>IoT</span><span>C++</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 06 EDUCATION & CERTIFICATIONS -->
+  <section id="sec06">
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-title">Education &amp; Certifications</span><span class="sec-line"></span></div>
+    <div class="panel">
+      <div class="edu-grid">
+        <div>
+          <div class="edu-degree">BS Computer Science <span class="edu-date">2022–2026</span></div>
+          <div class="edu-school">UIT University, Karachi, Pakistan</div>
+        </div>
+        <ul class="cert-list">
+          <li><i class="fas fa-certificate"></i>PCAP — Certified Associate in Python Programming</li>
+          <li><i class="fas fa-certificate"></i>Cisco Cybersecurity Certification</li>
+          <li><i class="fas fa-certificate"></i>Harvard CS50x (2023)</li>
+          <li><i class="fas fa-certificate"></i>AWS Analytics Certifications (×2)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <svg class="signal-divider" viewBox="0 0 800 20" preserveAspectRatio="none"><path d="M0 10 H80 V4 H160 V16 H240 V4 H320 V16 H400 V4 H480 V16 H560 V4 H640 V16 H720 V10 H800"/></svg>
+
+  <!-- 07 ORDERING INFORMATION -->
+  <section id="sec07">
+    <div class="sec-head"><span class="sec-num">07</span><span class="sec-title">Ordering Information / Contact</span><span class="sec-line"></span></div>
+    <div class="panel">
+      <table class="order-table">
+        <tbody>
+          <tr><td>EMAIL</td><td><a href="mailto:saifshakil10@gmail.com">saifshakil10@gmail.com</a></td></tr>
+          <tr><td>LINKEDIN</td><td><a href="https://www.linkedin.com/in/muhammad-saif-shakil" target="_blank">/muhammad‑saif‑shakil</a></td></tr>
+          <tr><td>GITHUB</td><td><a href="https://github.com/Muhammadsaiff" target="_blank">Muhammadsaiff</a></td></tr>
+          <tr><td>PHONE</td><td><a href="tel:+923042745538">+92‑304‑2745538</a></td></tr>
+          <tr><td>LOCATION</td><td>Karachi, Sindh, Pakistan</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <div class="footer">
-    <i class="fas fa-code"></i>  · <i class="fas fa-download"></i> <a href="resume.pdf" download style="color:#5f958a; text-decoration:none; border-bottom:1px dotted #3a7a7a;">resume.pdf</a>
+    MSS‑2026 · Rev 1.3 · Datasheet subject to revision without notice · <a href="resume.pdf" download style="color:var(--ink-faint);border-bottom:1px dotted var(--ink-faint);text-decoration:none;">resume.pdf</a>
   </div>
 
 </div>
 
 <script>
-  function toggleDesc(el) {
-    const desc = el.querySelector('.desc');
-    const icon = el.querySelector('.title i');
-    if (desc) {
-      desc.classList.toggle('show');
-      if (desc.classList.contains('show')) {
-        icon.className = 'fas fa-chevron-up';
-      } else {
-        icon.className = 'fas fa-chevron-down';
-      }
-    }
+  function toggleDesc(el){
+    const desc = el.querySelector('.ip-desc');
+    const icon = el.querySelector('.ip-name i');
+    if(!desc) return;
+    desc.classList.toggle('show');
+    icon.className = desc.classList.contains('show') ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
   }
+  document.querySelectorAll('.ip-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
 </script>
-
 </body>
 </html>
