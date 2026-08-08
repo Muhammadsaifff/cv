@@ -1,12 +1,510 @@
-<!-- <a href="talhaahmed.github.io/Talha_Ahmed_CV.pdf" target="_blank">Talha Ahmed CV</a> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=resume.pdf">
-    <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Saif Shakil · Portfolio</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0f17;
+      color: #c2e0e0;
+      font-family: 'Segoe UI', 'Courier New', monospace;
+      line-height: 1.6;
+      padding: 1.5rem;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 200, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 200, 0.02) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glitch {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #b8f0ee;
+      text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc;
+      animation: glitch 3s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc; }
+      20% { text-shadow: -0.05em -0.025em 0 #00ffcc, 0.025em 0.05em 0 #0066ff, -0.05em 0 0 #ff00cc; }
+      40% { text-shadow: 0.025em 0.05em 0 #00ffcc, 0.05em 0 0 #0066ff, -0.05em -0.025em 0 #ff00cc; }
+      70% { text-shadow: -0.025em -0.05em 0 #00ffcc, -0.05em 0 0 #0066ff, 0.05em 0.025em 0 #ff00cc; }
+      100% { text-shadow: 0.05em 0 0 #00ffcc, -0.05em -0.025em 0 #0066ff, 0.025em 0.05em 0 #ff00cc; }
+    }
+
+    .subtitle {
+      color: #6bb8b0;
+      font-size: 0.95rem;
+      border-left: 3px solid #2ae0c0;
+      padding-left: 1rem;
+      margin-top: 0.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .card {
+      background: rgba(10, 20, 28, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid #1f3f44;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      transition: 0.25s;
+    }
+    .card:hover {
+      border-color: #2dd5c0;
+      box-shadow: 0 0 25px rgba(0, 255, 200, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #8ee4d0;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #1a4a4a;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-title i {
+      color: #2ae0c0;
+      font-size: 1.1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .chip {
+      background: #142b30;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      color: #b0f0ea;
+      display: inline-block;
+      border: 1px solid #1e5a5a;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-tag {
+      background: #0b1f24;
+      border: 1px solid #1a4a4a;
+      border-radius: 30px;
+      padding: 0.2rem 1.1rem;
+      font-size: 0.75rem;
+      color: #b8e6e0;
+      display: inline-block;
+      margin: 0.2rem 0.1rem;
+      transition: 0.15s;
+    }
+    .skill-tag:hover {
+      background: #194a4a;
+      border-color: #2ae0c0;
+      color: white;
+    }
+
+    /* unified project card - both hardware & software */
+    .project-card {
+      background: #0d1a20;
+      border-left: 4px solid #2ae0c0;
+      padding: 0.8rem 1.2rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      background: #12262e;
+      border-left-color: #80f0e0;
+    }
+    .project-card .title {
+      font-weight: 700;
+      color: #c8f2ee;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .project-card .title i {
+      color: #2ae0c0;
+      font-size: 0.8rem;
+      transition: 0.2s;
+    }
+    .project-card .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.8rem;
+      font-size: 0.7rem;
+      color: #7ab0aa;
+      margin: 0.2rem 0 0.3rem;
+    }
+    .project-card .desc {
+      font-size: 0.85rem;
+      color: #b0d8d4;
+      margin-top: 0.3rem;
+      display: none;
+      padding-top: 0.3rem;
+      border-top: 1px dashed #1a4a4a;
+    }
+    .project-card .desc.show {
+      display: block;
+    }
+    .project-card .desc a {
+      color: #5fc8c0;
+      text-decoration: none;
+      border-bottom: 1px dotted #2a6a6a;
+    }
+    .project-card .desc a:hover {
+      color: #8ff0e0;
+      border-bottom-color: #8ff0e0;
+    }
+    .project-card .tech-tags {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 0.4rem;
+    }
+    .project-card .tech-tags span {
+      background: #0f2830;
+      padding: 0.05rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      color: #90d0c8;
+      border: 1px solid #1a5555;
+    }
+
+    .exp-item {
+      margin-bottom: 1.2rem;
+    }
+    .exp-item .title {
+      font-weight: 700;
+      color: #c8f2ee;
+    }
+    .exp-item .company {
+      color: #72bfb0;
+      font-size: 0.9rem;
+    }
+    .exp-item .date {
+      color: #5f958a;
+      font-size: 0.7rem;
+      float: right;
+    }
+
+    .contact-links a {
+      color: #b0e0e6;
+      text-decoration: none;
+      margin-right: 1.2rem;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted #1f5a5a;
+      transition: 0.2s;
+    }
+    .contact-links a:hover {
+      color: #2ae0c0;
+      border-bottom-color: #2ae0c0;
+    }
+
+    .download-btn {
+      background: #0d2a2a;
+      border: 1px solid #2ae0c0;
+      color: #b8f0ee;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.25s;
+    }
+    .download-btn i {
+      margin-right: 0.4rem;
+      color: #2ae0c0;
+    }
+    .download-btn:hover {
+      background: #1a4a4a;
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 255, 200, 0.2);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.7rem;
+      color: #3d7a7a;
+      border-top: 1px solid #1a3a3a;
+      padding-top: 1.2rem;
+    }
+
+    @media (max-width: 750px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .glitch { font-size: 1.7rem; }
+      .card { padding: 1.2rem; }
+      .contact-links a { display: inline-block; margin-bottom: 0.2rem; }
+    }
+    @media (max-width: 480px) {
+      body { padding: 0.8rem; }
+      .glitch { font-size: 1.3rem; }
+    }
+
+    ::-webkit-scrollbar { width: 6px; background: #0b141a; }
+    ::-webkit-scrollbar-thumb { background: #1f5a5a; border-radius: 10px; }
+  </style>
 </head>
 <body>
-    <p>If you are not redirected, <a href="resume.pdf">click here to open the CV PDF</a>.</p>
+<div class="container">
+
+  <!-- header with download CV (Karachi removed from header, now in education) -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <div>
+      <h1 class="glitch">Muhammad Saif Shakil</h1>
+      <div class="subtitle">
+        <i class="fas fa-microchip" style="color:#2ae0c0; margin-right: 6px;"></i>
+        Digital IC · FPGA · Verilog · Full‑stack
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 0.5rem;">
+      <a href="resume.pdf" download class="download-btn"><i class="fas fa-file-pdf"></i> Download CV</a>
+    </div>
+  </div>
+
+  <!-- contact & summary -->
+  <div class="card">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem;">
+      <div class="contact-links">
+        <a href="mailto:saifshakil10@gmail.com"><i class="fas fa-envelope"></i> saifshakil10</a>
+        <a href="#"><i class="fab fa-linkedin"></i> /muhammad-saif-shakil</a>
+        <a href="#"><i class="fab fa-github"></i> Muhammadsaiff</a>
+        <a href="#"><i class="fas fa-phone-alt"></i> +92-304-2745538</a>
+      </div>
+      <div>
+        <span class="chip"><i class="fas fa-graduation-cap"></i> Karachi, Pakistan</span>
+      </div>
+    </div>
+    <div style="margin-top: 1rem; font-size: 0.9rem; color: #b0d8d4; border-top: 1px solid #1a3a3a; padding-top: 0.8rem;">
+      <i class="fas fa-quote-left" style="color: #2ae0c0; opacity: 0.7;"></i>
+      Computer Science graduate with <strong>hardware design</strong> focus: RTL, Verilog, SystemVerilog, FPGA, AMBA protocols. 
+      Also experienced in AI, mobile & full‑stack. Passionate about silicon‑level design and verification.
+    </div>
+  </div>
+
+  <!-- two columns -->
+  <div class="grid-2">
+    <!-- left column: experience, education, certs -->
+    <div>
+      <div class="card">
+        <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
+        <div class="exp-item">
+          <div class="title">Digital IC Design & Verification Trainee</div>
+          <div class="company">INSPIRE - PSEB <span class="date">Ongoing</span></div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #b0d0cc; margin-top: 0.3rem;">
+            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>RTL Design, Verilog, SystemVerilog, FPGA flow</li>
+            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>Functional verification, testbench, EDA tools</li>
+            <li><i class="fas fa-check-circle" style="color:#2ae0c0; width:1.2rem;"></i>NED University · PSEB · Tech Destination Pakistan</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="title">Python Development Intern</div>
+          <div class="company">XPACE Technologies Pvt. Ltd. <span class="date">May–Jul 2024</span></div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #b0d0cc; margin-top: 0.3rem;">
+            <li><i class="fas fa-code" style="color:#2ae0c0; width:1.2rem;"></i>Inventory & LMS · dashboard analytics</li>
+            <li><i class="fas fa-users" style="color:#2ae0c0; width:1.2rem;"></i>Problem-solving · modular coding</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title"><i class="fas fa-university"></i> Education</div>
+        <div style="font-weight: 700; color: #c0f2f0;">BS Computer Science</div>
+        <div style="color: #7bb8b0; font-size: 0.85rem;">UIT University, Karachi, Pakistan <span style="float:right;">2022–2026</span></div>
+      </div>
+
+      <div class="card">
+        <div class="section-title"><i class="fas fa-certificate"></i> Certificates</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; font-size: 0.8rem;">
+          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> PCAP · Python</span>
+          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> Cisco Cybersecurity</span>
+          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> Harvard CS50x 2023</span>
+          <span><i class="fas fa-check-circle" style="color:#2ae0c0;"></i> AWS Analytics (2x)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- right column: ALL PROJECTS (unified theme, hardware + software) -->
+    <div>
+      <div class="card">
+        <div class="section-title"><i class="fas fa-microchip"></i> Hardware · FPGA Projects</div>
+        <p style="font-size: 0.75rem; color: #7ab0aa; margin-bottom: 0.8rem;"><i class="fas fa-info-circle"></i> Click on any project for details</p>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">UART <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-code"></i> Verilog · FPGA · async serial</div>
+          <div class="desc">Designed and implemented a UART communication module in Verilog for FPGA‑based asynchronous serial communication. Includes TX/RX modules, baud rate generation, start/stop bit detection, and serial/parallel conversion. Verified with testbenches and validated on FPGA board. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/uart" target="_blank">github.com/Muhammadsaiff/uart</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>testbench</span><span>FPGA</span><span>UART</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">AMBA APB Master‑Slave <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-bus"></i> Verilog · APB protocol · FSM</div>
+          <div class="desc">Designed APB Master and Slave modules in Verilog, supporting compliant read/write transactions with APB protocol signals. Developed FSM‑based control, verified with testbenches, and validated through simulation and FPGA implementation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/amba_apb" target="_blank">github.com/Muhammadsaiff/amba_apb</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>APB</span><span>FSM</span><span>FPGA</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">AXI4‑Lite Interface <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-arrows-alt-h"></i> Verilog · AXI4‑Lite · handshake</div>
+          <div class="desc">Designed AXI4‑Lite Master‑Slave interface with five channels and VALID/READY handshake. FSM‑based control logic, verified with testbenches, validated on FPGA. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/axi-lite" target="_blank">github.com/Muhammadsaiff/axi-lite</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>AXI4‑Lite</span><span>FPGA</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">AMBA AHB‑Lite <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-link"></i> Verilog · AHB‑Lite · FSM</div>
+          <div class="desc">Designed AMBA AHB‑Lite Master and Slave interface with protocol‑compliant read/write transactions. FSM control, testbench verification, FPGA validation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/ahb" target="_blank">github.com/Muhammadsaiff/ahb</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>AHB‑Lite</span><span>FPGA</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">VGA Controller + SRAM <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-tv"></i> Verilog · VGA timing · SRAM buffer</div>
+          <div class="desc">VGA controller with SRAM‑based frame buffer for real‑time video output. Implements VGA timing, synchronization, pixel addressing, and display control. Verified with testbenches and FPGA. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/vga_controller" target="_blank">github.com/Muhammadsaiff/vga_controller</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>VGA</span><span>SRAM</span><span>FPGA</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Cache Controller <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-database"></i> Verilog · direct‑mapped · SRAM</div>
+          <div class="desc">Direct‑mapped cache controller with SRAM‑based cache and main memory. Implements read/write, hit/miss detection, tag comparison, FSM control. Verified with testbenches. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/cache_controller" target="_blank">github.com/Muhammadsaiff/cache_controller</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>cache</span><span>SRAM</span><span>FSM</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">32‑bit ALU <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-calculator"></i> Verilog · arithmetic · logic</div>
+          <div class="desc">32‑bit ALU supporting arithmetic, logical, comparison, shift operations. Combinational RTL, testbench verification, FPGA implementation. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/32bit_alu" target="_blank">github.com/Muhammadsaiff/32bit_alu</a></div>
+          <div class="tech-tags"><span>Verilog</span><span>ALU</span><span>FPGA</span></div>
+        </div>
+      </div>
+
+      <!-- SOFTWARE PROJECTS (same unified card style) -->
+      <div class="card">
+        <div class="section-title"><i class="fas fa-code"></i> Software · Full‑stack</div>
+        <p style="font-size: 0.75rem; color: #7ab0aa; margin-bottom: 0.8rem;"><i class="fas fa-info-circle"></i> Click for details</p>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Pricexpert <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-mobile-alt"></i> Flutter · FastAPI · PostgreSQL · Firebase</div>
+          <div class="desc">AI‑powered grocery price comparison platform. Full‑stack mobile app with AI‑based product matching, price comparison, budget analysis. Built REST APIs and responsive UI. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/pricexpert" target="_blank">github.com/Muhammadsaiff/pricexpert</a></div>
+          <div class="tech-tags"><span>Flutter</span><span>FastAPI</span><span>PostgreSQL</span><span>Firebase</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Twintex Industry <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-industry"></i> Flutter · Firebase Firestore</div>
+          <div class="desc">Client‑wise towel processing & inventory management system. Implemented sales ledger, transaction management, and optimized performance for large datasets. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/twintex" target="_blank">github.com/Muhammadsaiff/twintex</a></div>
+          <div class="tech-tags"><span>Flutter</span><span>Firestore</span><span>inventory</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Aab‑e‑Pak <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-tint"></i> Flutter · Firebase</div>
+          <div class="desc">All‑in‑one water services app: booking water tankers, bottled water, tank cleaning, boring. Includes emergency mode, scheduling, vendor/brand selection. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Aab-e-pak" target="_blank">github.com/Muhammadsaiff/Aab-e-pak</a></div>
+          <div class="tech-tags"><span>Flutter</span><span>Firebase</span><span>mobile</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Smart City Management <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-city"></i> Flask · Oracle (cx_Oracle)</div>
+          <div class="desc">Web app with full CRUD operations and secure transaction management using cx_Oracle. Built for city infrastructure data handling. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/smartcity_management_system" target="_blank">github.com/Muhammadsaiff/smartcity_management_system</a></div>
+          <div class="tech-tags"><span>Flask</span><span>Oracle</span><span>SQL</span></div>
+        </div>
+
+        <div class="project-card" onclick="toggleDesc(this)">
+          <div class="title">Automated Water Gardener <i class="fas fa-chevron-down"></i></div>
+          <div class="meta"><i class="fas fa-leaf"></i> Arduino · IoT</div>
+          <div class="desc">Arduino‑based plant watering system with moisture sensing and level control. Reduces labor and uses water efficiently. <br> <i class="fab fa-github"></i> <a href="https://github.com/Muhammadsaiff/Automated_water_gardener" target="_blank">github.com/Muhammadsaiff/Automated_water_gardener</a></div>
+          <div class="tech-tags"><span>Arduino</span><span>IoT</span><span>C++</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- skills full width -->
+  <div class="card">
+    <div class="section-title"><i class="fas fa-tools"></i> Core Skills</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 1rem;">
+      <span class="skill-tag"><i class="fas fa-microchip"></i> Verilog</span>
+      <span class="skill-tag">SystemVerilog</span>
+      <span class="skill-tag">FPGA</span>
+      <span class="skill-tag">RTL Design</span>
+      <span class="skill-tag">FSM · CDC</span>
+      <span class="skill-tag">AMBA AXI4/APB/AHB</span>
+      <span class="skill-tag">UART</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">C++</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">Flutter</span>
+      <span class="skill-tag">FastAPI · Flask</span>
+      <span class="skill-tag">PostgreSQL</span>
+      <span class="skill-tag">Oracle DB</span>
+      <span class="skill-tag">Firebase</span>
+      <span class="skill-tag">OpenCV</span>
+      <span class="skill-tag">NLP</span>
+      <span class="skill-tag">Docker · Git</span>
+    </div>
+    <div style="margin-top: 0.6rem; font-size: 0.8rem; color: #6ba8a0;">
+      <i class="fas fa-bolt" style="color:#2ae0c0;"></i> Hardware design · Verification · Full‑stack · AI
+    </div>
+  </div>
+
+  <div class="footer">
+    <i class="fas fa-code"></i>  · <i class="fas fa-download"></i> <a href="resume.pdf" download style="color:#5f958a; text-decoration:none; border-bottom:1px dotted #3a7a7a;">resume.pdf</a>
+  </div>
+
+</div>
+
+<script>
+  function toggleDesc(el) {
+    const desc = el.querySelector('.desc');
+    const icon = el.querySelector('.title i');
+    if (desc) {
+      desc.classList.toggle('show');
+      if (desc.classList.contains('show')) {
+        icon.className = 'fas fa-chevron-up';
+      } else {
+        icon.className = 'fas fa-chevron-down';
+      }
+    }
+  }
+</script>
+
 </body>
 </html>
